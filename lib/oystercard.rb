@@ -1,16 +1,17 @@
+require 'journey_log'
+
 class Oystercard
 
-    attr_reader :balance, :entry_station, :exit_station, :journeys
+    attr_reader :balance, :journeylog
 
     MAX_LIMIT = 90
     MIN_LIMIT = 1
     MIN_FARE = 2
+    PENALTY_FARE = 6
 
     def initialize(balance = 0)
         @balance = balance
-        @entry_station = nil
-        @exit_station = nil
-        @journeys = []
+        @journeylog = JourneyLog.new
     end
 
     def top_up(value)
@@ -18,24 +19,14 @@ class Oystercard
         @balance += value
     end
 
-    def in_journey?
-      @entry_station != nil
-    end
-
-    def touch_in(location)
+    def touch_in(station)
       fail "Not enough credit" if min_amount?
-      @entry_station = location
+      journeylog.start(station)
     end
 
-    def touch_out(location)
-      deduct(MIN_FARE)
-      @exit_station = location
-      record_journey
-      @entry_station = nil
-    end
-
-    def journey_number(number)
-      @journeys[number - 1]
+    def touch_out(station = nil)
+      station == nil || journey.entry_station == nil ? deduct(PENALTY_FARE) : deduct(MIN_FARE)
+      journey(station)
     end
 
     private
@@ -50,9 +41,5 @@ class Oystercard
 
     def deduct(value)
       @balance -= value
-    end
-
-    def record_journey
-      @journeys << {:touch_in => @entry_station, :touch_out => @exit_station}
     end
 end
