@@ -1,34 +1,19 @@
 class Journey
-  attr_reader :entry_station, :exit_station, :journeys
+  attr_reader :journey
 
   def initialize
-    @entry_station = nil
-    @exit_station = nil
-    @journeys = []
+    @journey = {:touch_in => nil, :touch_out => nil}
   end
 
-  def in_journey?
-    @entry_station != nil
+  def add_touch_in(station)
+    @journey[:touch_in] = station
   end
 
-  def add_entry_station(station)
-    @entry_station = station
+  def add_touch_out(station)
+    @journey[:touch_out] = station
   end
 
-  def add_exit_station(station)
-    @exit_station = station
-    record_journey
-    @entry_station, @exit_station = nil
+  def show_touch_in
+    @journey[:touch_in]
   end
-
-  def journey_number(number)
-    @journeys[number - 1]
-  end
-
-  private
-
-  def record_journey
-    @journeys << {:touch_in => @entry_station, :touch_out => @exit_station}
-  end
-
 end

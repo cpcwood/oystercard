@@ -1,8 +1,9 @@
-require 'journey_log'
+require_relative 'journey_log'
+require_relative 'journey'
 
 class Oystercard
 
-    attr_reader :balance, :journeylog
+    attr_reader :balance
 
     MAX_LIMIT = 90
     MIN_LIMIT = 1
@@ -11,8 +12,9 @@ class Oystercard
 
     def initialize(balance = 0)
         @balance = balance
-        @journeylog = JourneyLog.new
+        @journeylog = JourneyLog.new(Journey)
     end
+
 
     def top_up(value)
         fail "Error: Maximum limit of #{MAX_LIMIT.to_s} reached" if exceeds_max?(value)
@@ -25,11 +27,19 @@ class Oystercard
     end
 
     def touch_out(station = nil)
-      station == nil || journey.entry_station == nil ? deduct(PENALTY_FARE) : deduct(MIN_FARE)
-      journey(station)
+      station == nil || journeylog.entry_station == nil ? deduct(PENALTY_FARE) : deduct(MIN_FARE)
+      journeylog.finish(station)
+    end
+
+    def show_journeys
+      journeylog.journeys
     end
 
     private
+
+    def journeylog
+      @journeylog
+    end
 
     def exceeds_max?(value)
       @balance + value >= MAX_LIMIT
