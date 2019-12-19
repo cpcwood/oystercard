@@ -1,6 +1,14 @@
 # Oystercard Challenge
 --------
+```
+ __________________
+| oyster   \ \     |
+|           \ \    |
+|            ) )   |
+|           / /  ⌽ |
+|__________/_/_____|
 
+```
 ### Outline
 
 Makers Academy pairs programming challenge to create an commandline ruby application which emulates an oystercard system, including adding balance, touching in and out, journey history, and penalty fares. The application must be created using TDD with the RSpec gem, testing for object behaviour, and covering edge cases.
