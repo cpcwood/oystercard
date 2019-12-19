@@ -12,7 +12,7 @@ The application is run directly from the command line, so to install simply clon
 require './lib/oystercard.rb'
 require './lib/station.rb'
 ```
-Alternativly run the example script or *rspec* to see the test documentation.
+Alternatively, run *rspec* to see the test documentation or the example script to see an overview of the program functionality.
 
 ### Customer Requirements
 
@@ -118,6 +118,6 @@ I need to have the correct fare calculated
 ### Reflect
 * Second pair programming challenge, so the difficulty was higher than the boris bikes project.
 * Pairs programming went well learned a few new techniques from my pairs.
-* Learning about dependency injection was challenging, however after enough research and explaining between pairs it made sense why it is advantagous to implement. Need to nail down the techniques of OOD and create a process for implementing them in realtime as I create the scripts
-* The challenge of extracting a class from a class then refactoring turned out very messy, however I believe this was the intention of the challenge since it could have easily been avoided with careful though about the clients requirments and domain modelling prior to starting TDD.
+* Learning about dependency injection was challenging, however after enough research and explaining between pairs it made sense why it is advantageous to implement. Need to nail down the techniques of OOD and create a process for implementing them in realtime as I create the scripts
+* The challenge of extracting a class from a class then refactoring turned out very messy, however I believe this was the intention of the challenge since it could have easily been avoided with careful thought about the clients requirements and domain modelling prior to starting TDD.
 * TDD through RSpec proved challenging since I am still new to the syntax, however towards the end and after research about testing for object behaviour the challenges it started to become easier. Need to create a process and list of common matchers in notes before next challenge.
