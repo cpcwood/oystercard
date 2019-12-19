@@ -1,5 +1,18 @@
 # Oystercard Challenge
------
+--------
+
+## Outline
+
+Makers Academy challenge to create an commandline ruby application which emulates an oystercard system, including adding balance, touching in and out, journey history, and penalty fares. The application must be created using TDD with the RSpec gem, testing for object behaviour, and covering edge cases.
+
+## How to Install & Example
+
+The application is run directly from the command line, so to install simply clone or fork the repository, change directory to the root folder, open irb, and paste the following code:
+```
+require './lib/oystercard.rb'
+require './lib/station.rb'
+```
+Alternativly run the example script or *rspec* to see the test documentation.
 
 ## Customer Requirements
 
@@ -63,43 +76,33 @@ In order to be charged the correct amount
 As a customer
 I need to have the correct fare calculated
 ```
------
+--------
 
 ## Objects & Attributes
 * Oystercard
-    - @money
-    - LIMIT
-    - @in_journey
-    - @history
-    - @entry_station
-    - @exit_station
-* Touchpad
-    - @location ({:location => 'loc', :zone => 1})
+    - @balance         - money on card
+    - @journeylog      - history of all journeys
+    - MAX_LIMIT        - max limit of balance
+    - MIN_LIMIT        - min limit to enter station
+    - MIN_FARE         - min fare
+    - PENALTY_FARE     - penalty fare if no touch in or out
+* JourneyLog
+    - @journey_class   - injected Journey class object
+    - @current_journey - current instance of Journey class
+    - @journeylist     - array of previous journey hashes
 * Journey
-  -
-
+    - @journey         - hash of entry and exit station
+* Station
+    - @name            - name of station
+    - @zone            - zone of station
+--------
 
 ## Objects & Methods
 * Oystercard
-  - top_up
-    - method for user to add money
-    - guard clause - check money limit constant
-  - deduct_money(val)
-    - method to remove money when touch in/out
-    - value argument to define how much
-  - show_balance
-  - touch_in
-  - touch_out
-  - in_journey
-  - history
-  -
-* Touchpad
-  - check_min_balance(oystercard)
-    - ask oystercard for balance
-    - check it is the right level
-  - journey_complete(oystercard)
-    - calculate touch in touch out
-  - touchpad_zone
-    - returns location
+    -
+* JourneyLog
+    -
 * Journey
-* 
+    -
+* Station
+    -
